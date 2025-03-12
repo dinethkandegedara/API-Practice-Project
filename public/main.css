@@ -1,0 +1,155 @@
+.main-header {
+    background-color: #222831;
+    padding: 20px 0; 
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    color: #00ADB5;
+}
+
+.header-item {
+    margin-left: 20px; 
+}
+
+.header-item a {
+    text-decoration: none;
+    color: #00ADB5;
+    font-size: 1rem;
+}
+
+.header-item a:hover {
+    color: #EEEEEE;
+}
+
+.card {
+    background-color: #222831;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+
+.card-body .btn {
+    margin-top: auto; 
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+.card-title {
+    color: #00ADB5;
+
+}
+
+.card-text {
+    color: #EEEEEE;
+    text-align: justify;
+}
+
+.card-img-top {
+    padding: 10px;
+    object-fit: cover;
+    height: 200px; 
+}
+
+.main-img {
+
+    height: 350px;
+    object-fit: cover;
+}
+
+.btn{
+    background-color: #00ADB5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn:hover{
+    background-color: #EEEEEE;
+    color: #00ADB5;
+}
+
+#hero-title{
+    color: #00ADB5;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+}
+
+#hero-subtitle{
+    color: #EEEEEE;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-top: 20px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+body {
+    background-color: #393E46;
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {
+    flex: 1; 
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.footer-links {
+    display: flex;
+    direction: none;
+    justify-content: center;
+    background-color: #EEEEEE00;
+    color: #00ADB5;
+    border: none;
+}
+
+.footer-links :hover {
+    color: #EEEEEE;
+}
