@@ -12,8 +12,10 @@
   "description": "To Practice Public API Using",
   "dependencies": {
     "axios": "^1.8.2",
+    "body": "^5.1.0",
     "bootstrap": "^5.3.3",
     "ejs": "^3.1.10",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "parser": "^0.1.4"
   }
 }

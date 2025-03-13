@@ -153,3 +153,58 @@ form {
 .footer-links :hover {
     color: #EEEEEE;
 }
+
+#myForm{
+    background-color: #222831;
+    color: #EEEEEE;
+    width: 1000px;
+    margin: 50px;
+    padding: 20px;
+    justify-content: center;
+    border: #00ADB5 solid 2px;
+    
+
+}
+
+#myForm div{
+    height: 75px;
+}
+
+#myForm .col-4{
+    font-weight: 700;
+    text-align: end;
+}
+
+#joke-button{
+    width: 300px;
+    height: 75px;
+    width: 100%;
+    color: #00ADB5;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.joke-button-div {
+    justify-content: center;
+    height: 75px;
+}
+.joke-form{
+    justify-content: center;
+}
+
+.card-body-joke{
+    border: #00ADB5 solid 2px;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.joke-hedder{
+    color: #00ADB5;
+    font-size: 3rem;
+    font-weight: 700;
+}
+.joke-sub-hedder{
+    color: #EEEEEE;
+
+}
