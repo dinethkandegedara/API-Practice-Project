@@ -1,210 +1,224 @@
+/* ================================
+   Global Layout & Colors
+================================ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #393e46;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ================================
+   Header Styling
+================================ */
 .main-header {
-    background-color: #222831;
-    padding: 20px 0; 
+  background-color: #222831;
+  padding: 20px 0;
 }
 
 .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-    color: #00ADB5;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  color: #00adb5;
 }
 
 .header-item {
-    margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .header-item a {
-    text-decoration: none;
-    color: #00ADB5;
-    font-size: 1rem;
+  text-decoration: none;
+  color: #00adb5;
+  font-size: 1rem;
 }
 
 .header-item a:hover {
-    color: #EEEEEE;
+  color: #eeeeee;
 }
 
+/* ================================
+   Card Styling
+================================ */
 .card {
-    background-color: #222831;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  background-color: #222831;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-
 
 .card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
 
 .card-body .btn {
-    margin-top: auto; 
+  margin-top: auto;
 }
 
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
 .card-title {
-    color: #00ADB5;
-
+  color: #00adb5;
 }
 
 .card-text {
-    color: #EEEEEE;
-    text-align: justify;
+  color: #eeeeee;
+  text-align: justify;
 }
 
 .card-img-top {
-    padding: 10px;
-    object-fit: cover;
-    height: 200px; 
+  padding: 10px;
+  object-fit: cover;
+  height: 200px;
 }
 
+/* ================================
+   Main Image & Hero Section
+================================ */
 .main-img {
-
-    height: 350px;
-    object-fit: cover;
+  height: 350px;
+  object-fit: cover;
 }
 
-.btn{
-    background-color: #00ADB5;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1rem;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.btn:hover{
-    background-color: #EEEEEE;
-    color: #00ADB5;
+#hero-title {
+  color: #00adb5;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
 }
 
-#hero-title{
-    color: #00ADB5;
-    font-size: 4rem;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 20px;
+#hero-subtitle {
+  color: #eeeeee;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 20px;
 }
 
-#hero-subtitle{
-    color: #EEEEEE;
-    font-size: 1.5rem;
-    text-align: left;
-    margin-top: 20px;
+/* ================================
+   Button Styling
+================================ */
+.btn {
+  background-color: #00adb5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
+.btn:hover {
+  background-color: #eeeeee;
+  color: #00adb5;
 }
 
-
-body {
-    background-color: #393E46;
-    display: flex;
-    flex-direction: column;
-}
-
-
-main {
-    flex: 1; 
-}
-
+/* ================================
+   Footer Styling
+================================ */
 footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    position: relative;
-    bottom: 0;
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
 
+/* ================================
+   Form & Joke API Specific Styling
+================================ */
 form {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .footer-links {
-    display: flex;
-    direction: none;
-    justify-content: center;
-    background-color: #EEEEEE00;
-    color: #00ADB5;
-    border: none;
+  background-color: transparent;
+  color: #00adb5;
+  border: none;
 }
 
-.footer-links :hover {
-    color: #EEEEEE;
+.footer-links:hover {
+  color: #eeeeee;
 }
 
-#myForm{
-    background-color: #222831;
-    color: #EEEEEE;
-    width: 1000px;
-    margin: 50px;
-    padding: 20px;
-    justify-content: center;
-    border: #00ADB5 solid 2px;
-    
-
+#myForm {
+  background-color: #222831;
+  color: #eeeeee;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  justify-content: center;
+  border: 2px solid #00adb5;
 }
 
-#myForm div{
-    height: 75px;
+#myForm div {
+  height: 75px;
 }
 
-#myForm .col-4{
-    font-weight: 700;
-    text-align: end;
+#myForm .col-4 {
+  font-weight: 700;
+  text-align: end;
 }
 
-#joke-button{
-    width: 300px;
-    height: 75px;
-    width: 100%;
-    color: #00ADB5;
-    font-size: 2rem;
-    font-weight: 700;
+#joke-button {
+  height: 75px;
+  color: #eeeeee;
+  font-size: 2rem;
+  font-weight: 700;
 }
-
+#joke-button:hover {
+  color: #00adb5;
+}
 .joke-button-div {
-    justify-content: center;
-    height: 75px;
-}
-.joke-form{
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  height: 75px;
 }
 
-.card-body-joke{
-    border: #00ADB5 solid 2px;
-    border-radius: 10px;
-    font-weight: 700;
-    padding: 20px;
+.joke-form {
+  display: flex;
+  justify-content: center;
 }
 
-.joke-hedder{
-    color: #00ADB5;
-    font-size: 3rem;
-    font-weight: 700;
-}
-.joke-sub-hedder{
-    color: #EEEEEE;
+.card-body-joke {
+  
+  font-weight: 700;
+  padding: 20px;
 
+}
+ 
+.mx-auto {
+  width: 700px;
+  height: 200px;
+  border: 2px solid #00adb5;
+  border-radius: 5px;
+}
+
+.joke-hedder {
+  color: #00adb5;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.joke-sub-hedder {
+  color: #eeeeee;
+}
+
+.card-number {
+  font-size: 0.9rem;
+  color: #EEEEEE;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }

@@ -1,108 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>practicing public API</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Our API Categories</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-    <%-include("hedder.ejs") %>
-    <main>
-        <div class="container py-5">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h2 id="hero-title">Explore Our API Categories</h2>
-                    <p id="hero-subtitle">Choose any category below to explore more.</p>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="/uploads/Application programming interface-rafiki.png" class="main-img img-fluid" alt="API">
-                </div>
-            </div>
-            
+  <!-- Include header -->
+  <%- include("hedder.ejs") %>
 
-            <!-- Row for Cards -->
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
-                <!-- Card 1 for Joke -->
-                <div class="col">
-                    <div class="card">
-                        <img src="Uploads/Messaging fun-cuate.png" class="card-img-top" alt="Joke">
-                        <div class="card-body">
-                            <h5 class="card-title">Joke API</h5>
-                            <p class="card-text">Get random jokes and funny content from the Joke API.</p>
-                            <form action="/joke-api" method="GET">
-                                <button class="btn btn-primary" type="submit">Explore</button>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 for Weather -->
-                <div class="col">
-                    <div class="card">
-                        <img src="Uploads/Weather-pana.png" class="card-img-top" alt="Weather">
-                        <div class="card-body">
-                            <h5 class="card-title">Weather API</h5>
-                            <p class="card-text">Access real-time weather data and forecasts with the Weather API.</p>
-                            <form action="/weather-api" method="GET">
-                                <button class="btn btn-primary" type="submit">Explore</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 for Blockchain -->
-                <div class="col">
-                    <div class="card">
-                        <img src="Uploads/Bitcoin P2P-bro.png" class="card-img-top" alt="Blockchain">
-                        <div class="card-body">
-                            <h5 class="card-title">Blockchain API</h5>
-                            <p class="card-text">Get blockchain data and analytics from the Blockchain API.</p>
-                            <form action="/blockchain-api" method="GET">
-                                <button class="btn btn-primary" type="submit">Explore</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 for Cocktail DB -->
-                <div class="col">
-                    <div class="card">
-                        <img src="Uploads/Cocktail bartender-bro.png" class="card-img-top" alt="Cocktail DB">
-                        <div class="card-body">
-                            <h5 class="card-title">Cocktail DB API</h5>
-                            <p class="card-text">Discover thousands of cocktail recipes with the Cocktail DB API.</p>
-                            <form action="/cocktail-api" method="GET">
-                                <button class="btn btn-primary" type="submit">Explore</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 for Open UV -->
-                <div class="col">
-                    <div class="card">
-                        <img src="Uploads/Sunny day-cuate.png" class="card-img-top" alt="Open UV">
-                        <div class="card-body">
-                            <h5 class="card-title">Open UV API</h5>
-                            <p class="card-text">Get information about UV levels around the world with the Open UV API.</p>
-                            <form action="/open-uv-api" method="GET">
-                                <button class="btn btn-primary" type="submit">Explore</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <main>
+    <div class="container py-5">
+      <!-- Hero Section -->
+      <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+          <h2 id="hero-title">Explore Our API Categories</h2>
+          <p id="hero-subtitle">Choose any category below to explore more.</p>
         </div>
-    </main>s
+        <div class="col-md-6 text-center">
+          <img src="/uploads/Application programming interface-rafiki.png" alt="API" class="main-img img-fluid" />
+        </div>
+      </div>
 
+      <!-- API Cards Section -->
+      <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+        <!-- Joke API Card -->
+        <div class="col">
+          <div class="card">
+            <img src="Uploads/Messaging fun-cuate.png" class="card-img-top" alt="Joke API" />
+            <div class="card-body">
+              <h5 class="card-title">Joke API</h5>
+              <p class="card-text">Get random jokes and funny content from the Joke API.</p>
+              <form action="/joke-api" method="GET">
+                <button class="btn btn-primary" type="submit">Explore</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Weather API Card -->
+        <div class="col">
+          <div class="card">
+            <img src="Uploads/Weather-pana.png" class="card-img-top" alt="Weather API" />
+            <div class="card-body">
+              <h5 class="card-title">Weather API</h5>
+              <p class="card-text">Access real-time weather data and forecasts with the Weather API.</p>
+              <form action="/weather-api" method="GET">
+                <button class="btn btn-primary" type="submit">Explore</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Blockchain API Card -->
+        <div class="col">
+          <div class="card">
+            <img src="Uploads/Bitcoin P2P-bro.png" class="card-img-top" alt="Blockchain API" />
+            <div class="card-body">
+              <h5 class="card-title">Blockchain API</h5>
+              <p class="card-text">Get blockchain data and analytics from the Blockchain API.</p>
+              <form action="/blockchain-api" method="GET">
+                <button class="btn btn-primary" type="submit">Explore</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Cocktail DB API Card -->
+        <div class="col">
+          <div class="card">
+            <img src="Uploads/Cocktail bartender-bro.png" class="card-img-top" alt="Cocktail DB API" />
+            <div class="card-body">
+              <h5 class="card-title">Cocktail DB API</h5>
+              <p class="card-text">Discover thousands of cocktail recipes with the Cocktail DB API.</p>
+              <form action="/cocktail-api" method="GET">
+                <button class="btn btn-primary" type="submit">Explore</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Open UV API Card -->
+        <div class="col">
+          <div class="card">
+            <img src="Uploads/Sunny day-cuate.png" class="card-img-top" alt="Open UV API" />
+            <div class="card-body">
+              <h5 class="card-title">Open UV API</h5>
+              <p class="card-text">Get information about UV levels around the world with the Open UV API.</p>
+              <form action="/open-uv-api" method="GET">
+                <button class="btn btn-primary" type="submit">Explore</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End API Cards Row -->
+    </div>
+  </main>
 
-
-
-
-
-    <%-include("footer.ejs") %>
+  <!-- Include footer -->
+  <%- include("footer.ejs") %>
 </body>
 </html>

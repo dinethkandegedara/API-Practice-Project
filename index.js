@@ -4,166 +4,120 @@ import bodyParser from "body-parser";
 
 const app = express();
 const PORT = 3000;
-const URL = "https://v2.jokeapi.dev/joke/";
+const BASE_URL = "https://v2.jokeapi.dev/joke/";
 
+// Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set("view engine","ejs");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-
-app.get("/",(req,res) => {
-    res.render("index.ejs",{});
+/**
+ * Home route renders the index page.
+ */
+app.get("/", (req, res) => {
+  res.render("index.ejs", {});
 });
 
-app.get("/joke-api",async (req,res) => {
-    res.render("jokeapi.ejs",{
-        joke:[],
-    }); 
+/**
+ * GET route for Joke API page.
+ * Initially renders the page with an empty joke array.
+ */
+app.get("/joke-api", (req, res) => {
+  res.render("jokeapi.ejs", { joke: [] });
 });
 
+/**
+ * Helper function to build the JokeAPI URL based on the request form data.
+ * @param {Object} body - The request body containing form data.
+ * @returns {string} - The complete API URL.
+ */
+function buildJokeApiUrl(body) {
+  let url = BASE_URL;
 
-app.post("/get-a-joke", async (req,res) => {
-    let tempURL = URL;
-
-    // add  category to URL
-    if (req.body["any-category"] === 'yes'){
-        tempURL += 'Any';
+  // Category selection: "Any" or specific categories
+  if (body["any-category"] === "yes") {
+    url += "Any";
+  } else {
+    // If a single category is selected, it's a string; otherwise, it's an array
+    if (typeof body.category === "string") {
+      url += body.category;
+    } else if (Array.isArray(body.category)) {
+      url += body.category.join(",");
     }
-    else {
-        if (typeof req.body.category === "string") {
-            tempURL += req.body.category;
+  }
+
+  // Start query parameters; add language if it's not English
+  url += body.lang !== "en" ? `?lang=${body.lang}` : "?";
+
+  // Append blacklist flags if provided
+  if (
+    body.blacklist &&
+    (Array.isArray(body.blacklist)
+      ? body.blacklist.length > 0
+      : body.blacklist !== "")
+  ) {
+    url += url.endsWith("?") ? "blacklistFlags=" : "&blacklistFlags=";
+    url += typeof body.blacklist === "string"
+      ? body.blacklist
+      : body.blacklist.join(",");
+  }
+
+  // Append joke type if provided (expects "single" or "twopart")
+  if (body["joke type"] === "single" || body["joke type"] === "twopart") {
+    url += url.endsWith("?") ? `type=${body["joke type"]}` : `&type=${body["joke type"]}`;
+  }
+
+  // Append the amount if more than one joke is requested
+  if (body["joke-count"] !== "1") {
+    url += `&amount=${body["joke-count"]}`;
+  }
+
+  return url;
+}
+
+/**
+ * POST route to fetch jokes from the Joke API based on form input.
+ */
+app.post("/get-a-joke", async (req, res) => {
+  try {
+    // Build the API URL dynamically using the helper function.
+    const apiUrl = buildJokeApiUrl(req.body);
+
+    // Request joke data from the Joke API
+    const response = await axios.get(apiUrl);
+    const data = response.data;
+    const jokes = [];
+
+    // If multiple jokes are returned, process each one.
+    if ("amount" in data) {
+      data.jokes.forEach((jokeItem) => {
+        // Handle single-part jokes
+        if (jokeItem.joke) {
+          jokes.push(jokeItem.joke);
+        } else {
+          // Handle two-part jokes by combining setup and delivery.
+          jokes.push(`${jokeItem.setup}<br>${jokeItem.delivery}`);
         }
-        else{
-            for (let cat of req.body.category) {
-                tempURL += cat;
-                tempURL += ',';
-                
-            };
-            if (tempURL.endsWith(",")) {
-                tempURL = tempURL.slice(0, -1);
-            };
-        };
-        
-    };
-
-
-
-    //add language
-    if (req.body.lang !=='en'){
-        tempURL += '?lang=';
-        tempURL += req.body.lang
-    }
-    else{
-        tempURL += '?';
-    };
-
-    //Black List
-    if (!req.body.blacklist || (Array.isArray(req.body.blacklist) && req.body.blacklist.length === 0) || req.body.blacklist === "") {
-
-        tempURL += '';
-    } else if (typeof req.body.blacklist === "string") {
-        if (tempURL.endsWith("?")) {
-            tempURL += 'blacklistFlags=';
-        }
-        else{
-            tempURL += '&blacklistFlags=';
-        };
-        
-        tempURL += req.body.blacklist;
+      });
     } else {
-        if (tempURL.endsWith("?")) {
-            tempURL += 'blacklistFlags=';
-        }
-        else{
-            tempURL += '&blacklistFlags=';
-        };
-        for (let black of req.body.blacklist) {
-            tempURL += black;
-            tempURL += ',';
-        }
-        if (tempURL.endsWith(",")) {
-            tempURL = tempURL.slice(0, -1);
-        }
-    }
-    
-
-    // Joke type
-    if (req.body['joke type'] ==='single' ){
-        if (tempURL.endsWith("?")) {
-            tempURL += 'type=single';
-        }
-        else{
-            tempURL += '&type=single';
-        };
-        
-    }
-    else if (req.body['joke type'] ==='twopart' ){
-        if (tempURL.endsWith("?")) {
-            tempURL += 'type=twopart';
-        }
-        else{
-            tempURL += '&type=twopart';
-        };
+      // Single joke returned from API
+      if (data.joke) {
+        jokes.push(data.joke);
+      } else {
+        jokes.push(`${data.setup}<br>${data.delivery}`);
+      }
     }
 
-    //joke-count
-    if(req.body['joke-count'] !=='1' ){
-        tempURL += '&amount=';
-        tempURL += req.body['joke-count'];
-    };
-
-
-    const result = await axios.get(tempURL);
-    let jokeList =JSON.stringify(result.data)
-    let JOKE = [];
-    
-    //check for joke count
-    if ("amount" in JSON.parse(jokeList)){
-        let jokes = JSON.parse(jokeList)["jokes"];
-
-        for (let joke of jokes){
-            //handling single jokes
-            if ("joke" in joke){
-                JOKE.push(joke["joke"]);
-
-            }
-            //handling two parts jokes
-            else{
-
-                let j = joke["setup"] + "<br>" + joke["delivery"];
-                JOKE.push(j);
-            };
-        };
-
-    }
-    else{
-        //handling single jokes
-
-        if ("joke" in JSON.parse(jokeList)){
-            JOKE.push(JSON.parse(jokeList)["joke"]);
-
-        }
-        //handling two parts jokes
-        else{
-
-            let j = JSON.parse(jokeList)["setup"] + "<br>" + JSON.parse(jokeList)["delivery"];
-            JOKE.push(j);
-        };
-    };
-    res.render("jokeapi.ejs",{
-        joke:JOKE
-    });
+    // Render the joke API page with the fetched jokes.
+    res.render("jokeapi.ejs", { joke: jokes });
+  } catch (error) {
+    console.error("Error fetching joke:", error);
+    // Render page with error message if the API request fails.
+    res.render("jokeapi.ejs", { joke: ["Failed to retrieve joke. Please try again."] });
+  }
 });
 
-
-
-
-
-
-
-
-
-
+// Start the Express server.
 app.listen(PORT, () => {
-    console.log(`Server Running on port : ${PORT}`);
+  console.log(`Server running on port: ${PORT}`);
 });

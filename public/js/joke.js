@@ -1,65 +1,59 @@
-// Get elements
-const enableRadio = document.getElementById("enableCheckbox");
-const disableRadio = document.getElementById("disableCheckbox");
-const checkboxes = document.querySelectorAll(".myCheckbox");
+/**
+ * IIFE to toggle the enabling/disabling of specific category checkboxes based on radio selection.
+ */
+(function () {
+  const enableRadio = document.getElementById("enableCheckbox");
+  const disableRadio = document.getElementById("disableCheckbox");
+  const categoryCheckboxes = document.querySelectorAll(".myCheckbox");
 
-// Function to enable all checkboxes
-enableRadio.addEventListener("change", function () {
-  checkboxes.forEach(checkbox => {
-    checkbox.disabled = false;
+  // When "Specific" is selected, enable category checkboxes.
+  enableRadio.addEventListener("change", () => {
+    categoryCheckboxes.forEach((checkbox) => (checkbox.disabled = false));
   });
-});
 
-// Function to disable all checkboxes
-disableRadio.addEventListener("change", function () {
-  checkboxes.forEach(checkbox => {
-    checkbox.disabled = true;
-    checkbox.checked = false; // Uncheck all when disabled
+  // When "Any" is selected, disable and uncheck category checkboxes.
+  disableRadio.addEventListener("change", () => {
+    categoryCheckboxes.forEach((checkbox) => {
+      checkbox.disabled = true;
+      checkbox.checked = false;
+    });
   });
-});
+})();
 
+/**
+ * IIFE to validate the joke submission form before submission.
+ */
+(function () {
+  const form = document.getElementById("myForm");
 
-//joke type enter confirmation
-document.getElementById("myForm").addEventListener("submit", function(event) {
-const checkboxes = document.querySelectorAll(".joke-type");
-let checkedCount = 0;
-
-checkboxes.forEach(checkbox => {
-if (checkbox.checked) {
-    checkedCount++;
-}
-});
-
-if (checkedCount === 0) {
-alert("Please select at least one option for joke type.");
-event.preventDefault(); // Stop form submission
-}
-});
-
-//joke category enter confirmation
-
-document.getElementById("myForm").addEventListener("submit", function(event) {
-    const checkboxes = document.querySelectorAll(".myCheckbox");
-    let checkedCount = 0;
-    
-    if (document.querySelector('input[name="any-category"]:checked')?.value === "yes"){
-
+  form.addEventListener("submit", function (event) {
+    // Validate Joke Type: At least one joke type must be selected.
+    const jokeTypeCheckboxes = document.querySelectorAll(".joke-type");
+    const isJokeTypeSelected = Array.from(jokeTypeCheckboxes).some(
+      (checkbox) => checkbox.checked
+    );
+    if (!isJokeTypeSelected) {
+      alert("Please select at least one option for joke type.");
+      event.preventDefault();
+      return;
     }
-    else {
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                checkedCount++;
-            }
-            });
-            
-            if (checkedCount === 0) {
-            alert("Please select at least one option for joke category.");
-            event.preventDefault(); 
-            }
-            
-    }
-});
 
+    // Validate Joke Category: If "Any" is not selected, ensure at least one specific category is chosen.
+    const isAnyCategory = document.querySelector('input[name="any-category"]:checked')?.value === "yes";
+    const specificCategoryCheckboxes = document.querySelectorAll(".myCheckbox");
+    const isCategorySelected = Array.from(specificCategoryCheckboxes).some(
+      (checkbox) => checkbox.checked
+    );
+    if (!isAnyCategory && !isCategorySelected) {
+      alert("Please select at least one option for joke category.");
+      event.preventDefault();
+    }
+  });
+})();
+
+/**
+ * Resets the joke form after a short delay.
+ */
 function resetForm() {
   setTimeout(() => document.getElementById("myForm").reset(), 100);
 }
